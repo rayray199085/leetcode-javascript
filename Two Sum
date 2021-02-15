@@ -1,0 +1,40 @@
+Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+
+You can return the answer in any order.
+
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+// solution 1
+// var twoSum = function (nums, target) {
+//   let usedNums = [];
+//   let resNums = [];
+//   for (let i = 0; i < nums.length - 1; i++) {
+//     for (let j = i + 1; j < nums.length; j++) {
+//       if (nums[i] + nums[j] === target) {
+//         resNums.push(i);
+//         resNums.push(j);
+//       }
+//     }
+//   }
+//   return resNums;
+// };
+// solution 2
+var twoSum = function (nums, target) {
+  let resMap = {};
+  nums.forEach((element, index) => {
+    resMap[element] = index;
+  });
+  for (let index = 0; index < nums.length; index++) {
+    const remains = target - nums[index];
+    if (resMap[remains] && resMap[remains] != index) {
+      console.log([index, resMap[remains]]);
+      return [index, resMap[remains]];
+    }
+  }
+};
+twoSum([3, 2, 4], 6);
